@@ -1,6 +1,6 @@
 pillow
 opencv-python
 tensorflow
-PyTorch
+torch
 pandas
 numpy

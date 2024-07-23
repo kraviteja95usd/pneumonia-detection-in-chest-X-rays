@@ -4,3 +4,5 @@ tensorflow
 torch
 pandas
 numpy
+jupyter
+notebook

@@ -4,5 +4,10 @@ tensorflow
 torch
 pandas
 numpy
-jupyter
+jupyterlab
 notebook
+tqdm
+joblib
+scipy
+scikit-image
+matplotlib

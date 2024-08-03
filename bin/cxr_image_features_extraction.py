@@ -226,17 +226,13 @@ class CxrImageFeatureExtraction(ImageDataPreprocessing):
 		max_probability = np.max(glcm)
 
 		# Sum of Squares (Variance): Measure of the dispersion of elements in the GLCM
-		sum_squares_chan1 = np.sum((row_indices ** 2) * glcm[:, :, :, 0], axis=(0, 1))
-		glcm_variance_chan1 = sum_squares_chan1 / np.sum(glcm[:, :, :, 0], axis=(0, 1))
-
-		sum_squares_chan2 = np.sum((row_indices ** 2) * glcm[:, :, :, 1], axis=(0, 1))
-		glcm_variance_chan2 = sum_squares_chan2 / np.sum(glcm[:, :, :, 1], axis=(0, 1))
-
-		sum_squares_chan3 = np.sum((row_indices ** 2) * glcm[:, :, :, 2], axis=(0, 1))
-		glcm_variance_chan3 = sum_squares_chan3 / np.sum(glcm[:, :, :, 2], axis=(0, 1))
-
-		sum_squares_chan4 = np.sum((row_indices ** 2) * glcm[:, :, :, 3], axis=(0, 1))
-		glcm_variance_chan4 = sum_squares_chan4 / np.sum(glcm[:, :, :, 3], axis=(0, 1))
+		row_indices, col_indices = np.indices(glcm.shape[:2])
+		variances = []
+		for i in range(glcm.shape[3]):
+			sum_squares = np.sum((row_indices ** 2) * glcm[:, :, 0, i])
+			variance = sum_squares / np.sum(glcm[:, :, 0, i])
+			variances.append(variance)
+		glcm_variance = np.mean(variances)
 
 		# Sum Average, Sum Entropy, Sum Variance: Measures of the distribution of elements in the GLCM
 		sum_over_axes = np.sum(glcm, axis=(0, 1))  # Sum over row and col
@@ -268,10 +264,7 @@ class CxrImageFeatureExtraction(ImageDataPreprocessing):
 			'GLCM_Cluster_Prominence': cluster_prominence,
 			'GLCM_Cluster_Shade': cluster_shade,
 			'GLCM_Max_Probability': max_probability,
-			'GLCM_Variance_Channel_1': glcm_variance_chan1,
-			'GLCM_Variance_Channel_2': glcm_variance_chan2,
-			'GLCM_Variance_Channel_3': glcm_variance_chan3,
-			'GLCM_Variance_Channel_4': glcm_variance_chan4,
+			'GLCM_Variance': glcm_variance,
 			'GLCM_Sum_Average': sum_average,
 			'GLCM_Sum_Entropy': sum_entropy,
 			'GLCM_Sum_Variance': sum_variance,

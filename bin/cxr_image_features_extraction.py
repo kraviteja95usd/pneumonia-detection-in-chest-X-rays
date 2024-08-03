@@ -30,16 +30,11 @@ class CxrImageFeatureExtraction(ImageDataPreprocessing):
         """
 		super().__init__()
 		self.excel_sheet_names = pneumonia_detector_constants["excel_sheet_names"]
-		self.image_first_order_features_xls_file_name = pneumonia_detector_constants[
-			"image_first_order_features_xls_file_name"]
-		self.image_second_order_features_glcm_xls_file_name = pneumonia_detector_constants[
-			"image_second_order_features_glcm_xls_file_name"]
-		self.image_second_order_features_glrlm_xls_file_name = pneumonia_detector_constants[
-			"image_second_order_features_glrlm_xls_file_name"]
-		self.image_second_order_features_gldm_xls_file_name = pneumonia_detector_constants[
-			"image_second_order_features_gldm_xls_file_name"]
-		self.image_second_order_features_ngtdm_xls_file_name = pneumonia_detector_constants[
-			"image_second_order_features_ngtdm_xls_file_name"]
+		self.image_first_order_features_xls_file_name = pneumonia_detector_constants["image_first_order_features_xls_file_name"]
+		self.image_second_order_features_glcm_xls_file_name = pneumonia_detector_constants["image_second_order_features_glcm_xls_file_name"]
+		self.image_second_order_features_glrlm_xls_file_name = pneumonia_detector_constants["image_second_order_features_glrlm_xls_file_name"]
+		self.image_second_order_features_gldm_xls_file_name = pneumonia_detector_constants["image_second_order_features_gldm_xls_file_name"]
+		self.image_second_order_features_ngtdm_xls_file_name = pneumonia_detector_constants["image_second_order_features_ngtdm_xls_file_name"]
 
 	def fetch_images_features_excel_file_path(self, excel_file_name):
 		"""
@@ -58,6 +53,17 @@ class CxrImageFeatureExtraction(ImageDataPreprocessing):
 
 	@staticmethod
 	def fetch_last_two_folder_names_of_path(folder_path):
+		"""
+		Extract the last 2 folder names from a path
+
+		Args:
+			folder_path(str): Absolute path string of the folder path
+			Example: /abc/def/ghi/jkl
+
+		Returns:
+			last_two_folder_names(str): Returns the last two folder names from the given path.
+			Example from the above path: ghi/jkl
+		"""
 		path_obj = pathlib.Path(folder_path)
 		last_two_folder_names = f"{path_obj.parent.name}/{path_obj.name}"
 		return last_two_folder_names
@@ -928,6 +934,19 @@ class CxrImageFeatureExtraction(ImageDataPreprocessing):
 		return extracted_ngtdm_features
 
 	def update_first_order_features_to_excel_file(self, folders):
+		"""
+		Extract the first order features and write to an Excel file.
+
+		Args:
+			folders(list): List of folders where the train (NORMAL & PNEUMONIA) and test (NORMAL & PNEUMONIA) images are present.
+
+		Returns:
+			None
+
+		Prints:
+			Progress bars that display the status of feature extraction of first order features and  path to the Excel file.
+		"""
+
 		excel_sheet_names = self.excel_sheet_names
 		excel_file_name = self.fetch_images_features_excel_file_path(self.image_first_order_features_xls_file_name)
 		print(f"Extracted First order features will be saved - {excel_file_name}\n\n")
@@ -949,6 +968,19 @@ class CxrImageFeatureExtraction(ImageDataPreprocessing):
 		print("Please check the Excel file for further analysis and interpretation")
 
 	def update_second_order_glcm_features_to_excel_file(self, folders):
+		"""
+		Extract the second order GLCM features and write to an Excel file.
+
+		Args:
+			folders(list): List of folders where the train (NORMAL & PNEUMONIA) and test (NORMAL & PNEUMONIA) images are present.
+
+		Returns:
+			None
+
+		Prints:
+			Progress bars that display the status of feature extraction of second order GLCM features and  path to the Excel file.
+		"""
+
 		excel_sheet_names = self.excel_sheet_names
 		excel_file_name = self.fetch_images_features_excel_file_path(
 			self.image_second_order_features_glcm_xls_file_name)
@@ -973,6 +1005,19 @@ class CxrImageFeatureExtraction(ImageDataPreprocessing):
 		print("Please check the Excel file for further analysis and interpretation")
 
 	def update_second_order_glrlm_features_to_excel_file(self, folders):
+		"""
+		Extract the second order GLRLM features and write to an Excel file.
+
+		Args:
+			folders(list): List of folders where the train (NORMAL & PNEUMONIA) and test (NORMAL & PNEUMONIA) images are present.
+
+		Returns:
+			None
+
+		Prints:
+			Progress bars that display the status of feature extraction of second order GLRLM features and  path to the Excel file.
+		"""
+
 		excel_sheet_names = self.excel_sheet_names
 		excel_file_name = self.fetch_images_features_excel_file_path(
 			self.image_second_order_features_glrlm_xls_file_name)
@@ -995,6 +1040,19 @@ class CxrImageFeatureExtraction(ImageDataPreprocessing):
 		print("Please check the Excel file for further analysis and interpretation")
 
 	def update_second_order_gldm_features_to_excel_file(self, folders):
+		"""
+		Extract the second order GLDM features and write to an Excel file.
+
+		Args:
+			folders(list): List of folders where the train (NORMAL & PNEUMONIA) and test (NORMAL & PNEUMONIA) images are present.
+
+		Returns:
+			None
+
+		Prints:
+			Progress bars that display the status of feature extraction of second order GLDM features and  path to the Excel file.
+		"""
+
 		excel_sheet_names = self.excel_sheet_names
 		excel_file_name = self.fetch_images_features_excel_file_path(
 			self.image_second_order_features_gldm_xls_file_name)
@@ -1017,6 +1075,19 @@ class CxrImageFeatureExtraction(ImageDataPreprocessing):
 		print("Please check the Excel file for further analysis and interpretation")
 
 	def update_second_order_ngtdm_features_to_excel_file(self, folders):
+		"""
+		Extract the second order NGTDM features and write to an Excel file.
+
+		Args:
+			folders(list): List of folders where the train (NORMAL & PNEUMONIA) and test (NORMAL & PNEUMONIA) images are present.
+
+		Returns:
+			None
+
+		Prints:
+			Progress bars that display the status of feature extraction of second order NGTDM features and  path to the Excel file.
+		"""
+
 		excel_sheet_names = self.excel_sheet_names
 		excel_file_name = self.fetch_images_features_excel_file_path(
 			self.image_second_order_features_ngtdm_xls_file_name)

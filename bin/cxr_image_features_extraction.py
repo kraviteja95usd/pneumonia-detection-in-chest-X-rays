@@ -235,14 +235,26 @@ class CxrImageFeatureExtraction(ImageDataPreprocessing):
         glcm_variance = np.mean(variances)
 
         # Sum Average, Sum Entropy, Sum Variance: Measures of the distribution of elements in the GLCM
-        sum_over_axes = np.sum(glcm, axis=(0, 1))  # Sum over row and col
-        k_indices = np.arange(2, 2 * glcm.shape[0] + 1)
-        sum_average = np.sum([np.sum(k_indices * sum_over_axes[:, i]) for i in range(sum_over_axes.shape[1])])
-        sum_entropy = -np.sum(
-            [np.sum(sum_over_axes[:, i] * np.log(sum_over_axes[:, i] + 1e-10)) for i in range(sum_over_axes.shape[1])])
-        sum_variance = np.sum(
-            [np.sum(((k_indices - sum_average / sum_over_axes.shape[1]) ** 2) * sum_over_axes[:, i]) for i in
-             range(sum_over_axes.shape[1])])
+        k_indices = np.arange(glcm.shape[0])
+        p_x_plus_y = np.sum(glcm, axis=0)  # Sum over row
+
+        # Normalize p_x_plus_y to ensure it sums up to 1
+        p_x_plus_y = p_x_plus_y / np.sum(p_x_plus_y)
+
+        sum_average = 0
+        for i in range(glcm.shape[0]):
+            sum_average += k_indices[i] * p_x_plus_y[i]
+
+        sum_variance = 0
+        for i in range(glcm.shape[0]):
+            sum_variance += (k_indices[i] - sum_average) ** 2 * p_x_plus_y[i]
+
+        epsilon = 1e-15  # small value to avoid division by zero
+        p_x_plus_y_safe = np.where(p_x_plus_y > epsilon, p_x_plus_y, epsilon)
+        sum_entropy = -np.sum(p_x_plus_y_safe * np.log2(p_x_plus_y_safe))
+
+        sum_average = np.mean(sum_average)
+        sum_variance = np.mean(sum_variance)
 
         # Difference Entropy and Difference Variance: Measures of the entropy and variance of the differences in the GLCM
         difference_sum = np.sum(glcm, axis=0)  # Sum over row and col

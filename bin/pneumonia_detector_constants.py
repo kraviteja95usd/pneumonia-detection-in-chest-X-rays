@@ -9,6 +9,7 @@ pneumonia_detector_constants = {
 	"image_second_order_features_glrlm_xls_file_name": "chest_xray_images_second_order_features_glrlm.xlsx",
 	"image_second_order_features_gldm_xls_file_name": "chest_xray_images_second_order_features_gldm.xlsx",
 	"image_second_order_features_ngtdm_xls_file_name": "chest_xray_images_second_order_features_ngtdm.xlsx",
+	"images_features_merged_xls_file_name": "images_features_merged.xlsx",
 	"train_test_image_dirs": [
 		"train", "test"
 	],

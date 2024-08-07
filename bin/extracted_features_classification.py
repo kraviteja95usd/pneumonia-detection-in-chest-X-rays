@@ -33,7 +33,8 @@ class ExtractedFeaturesClassification(ImageDataPreprocessing):
         self.image_second_order_features_glcm_xls_file_name = pneumonia_detector_constants["image_second_order_features_glcm_xls_file_name"]
         self.image_second_order_features_glrlm_xls_file_name = pneumonia_detector_constants["image_second_order_features_glrlm_xls_file_name"]
         self.image_second_order_features_gldm_xls_file_name = pneumonia_detector_constants["image_second_order_features_gldm_xls_file_name"]
-        self.image_first_order_features_xls_file_name = pneumonia_detector_constants["image_second_order_features_ngtdm_xls_file_name"]
+        self.image_second_order_features_ngtdm_xls_file_name = pneumonia_detector_constants["image_second_order_features_ngtdm_xls_file_name"]
+        self.images_features_merged_xls_file_name = pneumonia_detector_constants["images_features_merged_xls_file_name"]
 
     def load_excel_file_into_dataframe(self, excel_file_name, excel_sheet_name):
         """
@@ -91,7 +92,7 @@ class ExtractedFeaturesClassification(ImageDataPreprocessing):
         final_dataframe = pd.concat([dataframe1, dataframe2], ignore_index=True)
         return final_dataframe
 
-    def train_multiple_ml_models(self, train_df, test_df):
+    def train_multiple_ml_models(self, train_df, test_df=None):
         """
         Train baseline models with provided dataframes using all the ML algorithms
         Executes the required steps to compare multiple models, print classification report and
@@ -109,6 +110,28 @@ class ExtractedFeaturesClassification(ImageDataPreprocessing):
         setup(train_df, test_data=test_df, target=self.target_column_name, session_id=123, index=False, verbose=True)
         best_model = compare_models()
         return best_model
+
+    def train_multiple_ml_models_with_pca(self, pca_components, train_df, test_df=None):
+        """
+        Train baseline models with provided dataframes using all the ML algorithms
+        Executes the required steps to compare multiple models, print classification report and
+        returns the best ML model for the passed dataframes.
+
+        Args:
+            train_df(pd.DataFrame): Dataframe used to train the model
+            test_df(pd.DataFrame): Dataframe used to test the model
+            pca_components(int): Number of features to consider
+
+        Returns:
+            best_model(algorithm type): Returns the comparison of multiple ML models along with the best model
+            Example: sklearn.linear_model._logistic.LogisticRegression
+        """
+
+        result = setup(train_df, test_data=test_df, target=self.target_column_name,
+                       pca=True, pca_components=pca_components, session_id=123,
+                       index=False, verbose=True)
+        best_model = compare_models()
+        return best_model, result
 
     @staticmethod
     def evaluate_best_model(best_model):
@@ -207,3 +230,46 @@ class ExtractedFeaturesClassification(ImageDataPreprocessing):
             os.makedirs(model_file_path)
 
         print("Model is saved to: ", joblib.dump(final_model, model_file_full_path))
+
+    def merge_excel_files(self):
+        # Define the path to the Excel files
+        excel_file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), str(self.image_information_dir_name))
+
+        # Define the exact file names you want to merge
+        file_names = [
+            self.image_first_order_features_xls_file_name,
+            self.image_second_order_features_glcm_xls_file_name,
+            self.image_second_order_features_glrlm_xls_file_name,
+            self.image_second_order_features_gldm_xls_file_name,
+            self.image_second_order_features_ngtdm_xls_file_name
+        ]
+
+        # Define the sheet names (assuming they are the same across all files)
+        sheet_names = self.excel_sheet_names
+
+        # Create an empty dictionary to store the merged data
+        merged_data = {
+            sheet: pd.DataFrame()
+            for sheet in sheet_names
+        }
+
+        # Iterate over each file and merge the data
+        for file_name in file_names:
+            file = os.path.join(excel_file_path, str(file_name))
+            for sheet in sheet_names:
+                df = pd.read_excel(file, sheet_name=sheet)
+                # Check if the dataframe is not empty before merging
+                if not df.empty:
+                    if merged_data[sheet].empty:
+                        merged_data[sheet] = df
+                    else:
+                        merged_data[sheet] = merged_data[sheet].merge(df, how='outer')
+
+        # Create a new Excel file with the merged data
+        merged_file_path = os.path.join(excel_file_path, str(self.images_features_merged_xls_file_name))
+        with pd.ExcelWriter(merged_file_path) as writer:
+            for sheet, df in merged_data.items():
+                df.drop_duplicates(subset='Image Filename', keep='first', inplace=True)
+                df.to_excel(writer, sheet_name=sheet, index=False)
+
+        return merged_file_path

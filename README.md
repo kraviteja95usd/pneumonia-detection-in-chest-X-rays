@@ -58,10 +58,10 @@ We selected this dataset based on several factors. For more detailed information
 - Dataset has 2 folders:
   -  **Train:**
     -  Normal (without Pneumonia) = 1349 images
-    -  Pneumonia = 5233 images
+    -  Pneumonia = 3883 images
   -  **Test:**
-    -  Normal (without Pneumonia) = 5467 images
-    -  Pneumonia = 5857 images
+    -  Normal (without Pneumonia) = 234 images
+    -  Pneumonia = 390 images
 
 # Algorithms which can be used as part of our investigation
 - Deep Learning Algorithms
@@ -145,24 +145,43 @@ jupyter lab
   - Click (Single click or double click whatever works) on the `Pneumonia_Detection_Preprocessing.ipynb` file.
   - You will notice the file opened.
   - Click `Run` button from the Menu bar and select the option of your interest (`Run Cell` or `Run All` button).
-  - You can look at the execution results within the file and follow accordingly.
+  - You can look at the execution results within the file and interpret accordingly.
 
 - Step-2:
-  - Click (Single click or double click whatever works) on the `Pneumonia_Detection_Feature_Extraction.ipynb` file.
-  - You will notice the file opened.
-  - Click `Run` button from the Menu bar and select the option of your interest (`Run Cell` or `Run All` button).
-  - You can look at the execution results within the file and follow accordingly.
+  - Repeat Step-1 for the following files one after the other 
+    - `Pneumonia_Detection_Feature_Extraction.ipynb`
+    - `Pneumonia_Detection_Feature_Extraction_First_Order_GLCM_and_GLDM.ipynb`
+    - `Pneumonia_Detection_Feature_Extraction_GLRLM.ipynb`
+    - `Pneumonia_Detection_Feature_Extraction_NGTDM.ipynb`
+    - `First_Order_Features_Classification.ipynb`
+    - `Second_Order_GLCM_Features_Classification.ipynb`
+    - `Second_Order_GLRLM_Features_Classification.ipynb`
+    - `Second_Order_GLDM_Features_Classification.ipynb`
+    - `Second_Order_NGTDM_Features_Classification.ipynb`
+  - You can look at the execution results within the file and interpret accordingly.
 
 # Usage Instructions in Google Colab
 - Upload your `chest_xray` dataset folder to your Google Drive with whatever the account you wish to open Google Colab.
 - Follow the same steps as above till switching to the `bin` directory.
 - Goto [Google Colab](https://colab.research.google.com).
 - You will find an option to `Upload Notebook`. 
-- Upload the notebooks `Pneumonia_Detection_Preprocessing.ipynb` and `Pneumonia_Detection_Feature_Extraction.ipynb` from your laptop to Google Colab.
-- Goto `Pneumonia_Detection_Preprocessing.ipynb`. If required, write 3 to 4 lines of code to load the dataset from Google Colab as needed. You should be able to get it. 
-- Click on `Run` option and select `Run All` or `Run Cell` or any option of your interest. You will see the code running.
-- Make sure to run `Pneumonia_Detection_Preprocessing.ipynb` first. Then only `Pneumonia_Detection_Feature_Extraction.ipynb`.
-- You can look at the execution results within the file.
+- Step - 1:
+  - Upload the notebooks `Pneumonia_Detection_Preprocessing.ipynb` and `Pneumonia_Detection_Feature_Extraction.ipynb` from your laptop to Google Colab.
+  - Goto `Pneumonia_Detection_Preprocessing.ipynb`. If required, write 3 to 4 lines of code to load the dataset from Google Colab as needed. You should be able to get it.
+  - Click on `Run` option and select `Run All` or `Run Cell` or any option of your interest. You will see the code running.
+  - Make sure to run `Pneumonia_Detection_Preprocessing.ipynb` first. Then only `Pneumonia_Detection_Feature_Extraction.ipynb`.
+- Step - 2:
+  - Repeat Step-1 for the following files one after the other.
+    - `Pneumonia_Detection_Feature_Extraction.ipynb`
+    - `Pneumonia_Detection_Feature_Extraction_First_Order_GLCM_and_GLDM.ipynb`
+    - `Pneumonia_Detection_Feature_Extraction_GLRLM.ipynb`
+    - `Pneumonia_Detection_Feature_Extraction_NGTDM.ipynb`
+    - `First_Order_Features_Classification.ipynb`
+    - `Second_Order_GLCM_Features_Classification.ipynb`
+    - `Second_Order_GLRLM_Features_Classification.ipynb`
+    - `Second_Order_GLDM_Features_Classification.ipynb`
+    - `Second_Order_NGTDM_Features_Classification.ipynb`
+- You can look at the execution results within the file and interpret accordingly.
 
 # Authors
 | Author                           | Contact Details                  |

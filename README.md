@@ -66,10 +66,11 @@ We selected this dataset based on several factors. For more detailed information
 # Algorithms which can be used as part of our investigation
 - Deep Learning Algorithms
   - Convolutional Neural Networks (CNNs)
-  - Transfer Learning
 - Traditional Machine Learning Algorithms
   - Support Vector Machines (SVM)
   - Random Forests
+  - Logistic Regression
+  - Decision Tree etc
 - Optimization Techniques
   - Local Search, Search Strategies, and Heuristics
 
@@ -89,6 +90,7 @@ We selected this dataset based on several factors. For more detailed information
 - opencv-python
 - tensorflow
 - torch
+- torchvision
 - pandas
 - numpy
 - jupyter
@@ -97,6 +99,10 @@ We selected this dataset based on several factors. For more detailed information
 - joblib
 - scipy
 - scikit-image
+- scikit-learn
+- pycaret
+- starlette
+- seaborn
 
 # Usage Instructions in Local System
 - Clone using HTTPS
@@ -146,18 +152,25 @@ jupyter lab
   - You will notice the file opened.
   - Click `Run` button from the Menu bar and select the option of your interest (`Run Cell` or `Run All` button).
   - You can look at the execution results within the file and interpret accordingly.
+    - !!! IMPORTANT NOTE AND DO NOT MISS THIS !!! 
+      Post execution of `Load the Excel file and fetch the maximum height and maximum width of all the images`
+      section from the `Pneumonia_Detection_Preprocessing.ipynb` file, goto the `dataset` path, copy the entire `chest_xray_nrm` 
+      folder and again paste it.
+      Now, rename the folder with `chest_xray_nrm_padded`. Then, go inside it. Append `_padded` to all the folders inside them.
+  - Now come back to the `Pneumonia_Detection_Preprocessing.ipynb` file and proceed with the image padding section which is the last part of this file execution.
 
 - Step-2:
-  - Repeat Step-1 for the following files one after the other 
-    - `Pneumonia_Detection_Feature_Extraction.ipynb`
-    - `Pneumonia_Detection_Feature_Extraction_First_Order_GLCM_and_GLDM.ipynb`
-    - `Pneumonia_Detection_Feature_Extraction_GLRLM.ipynb`
-    - `Pneumonia_Detection_Feature_Extraction_NGTDM.ipynb`
-    - `First_Order_Features_Classification.ipynb`
-    - `Second_Order_GLCM_Features_Classification.ipynb`
-    - `Second_Order_GLRLM_Features_Classification.ipynb`
-    - `Second_Order_GLDM_Features_Classification.ipynb`
-    - `Second_Order_NGTDM_Features_Classification.ipynb`
+  - Repeat Step-1 for the following files one after the other (from point-1 to point-4. You can ignore the IMPORTANT NOTE from this step).
+    - `Pneumonia_Detection_Feature_Extraction.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Pneumonia_Detection_Feature_Extraction_First_Order_GLCM_and_GLDM.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Pneumonia_Detection_Feature_Extraction_GLRLM.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Pneumonia_Detection_Feature_Extraction_NGTDM.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `First_Order_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_GLCM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_GLRLM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_GLDM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_NGTDM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `All_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
   - You can look at the execution results within the file and interpret accordingly.
 
 # Usage Instructions in Google Colab
@@ -169,18 +182,25 @@ jupyter lab
   - Upload the notebooks `Pneumonia_Detection_Preprocessing.ipynb` and `Pneumonia_Detection_Feature_Extraction.ipynb` from your laptop to Google Colab.
   - Goto `Pneumonia_Detection_Preprocessing.ipynb`. If required, write 3 to 4 lines of code to load the dataset from Google Colab as needed. You should be able to get it.
   - Click on `Run` option and select `Run All` or `Run Cell` or any option of your interest. You will see the code running.
-  - Make sure to run `Pneumonia_Detection_Preprocessing.ipynb` first. Then only `Pneumonia_Detection_Feature_Extraction.ipynb`.
+  - You can look at the execution results within the file and interpret accordingly.
+    - !!! IMPORTANT NOTE AND DO NOT MISS THIS !!! 
+      Post execution of `Load the Excel file and fetch the maximum height and maximum width of all the images`
+      section from the `Pneumonia_Detection_Preprocessing.ipynb` file, goto the `dataset` path, copy the entire `chest_xray_nrm` 
+      folder and again paste it.
+      Now, rename the folder with `chest_xray_nrm_padded`. Then, go inside it. Append `_padded` to all the folders inside them.
+  - Now come back to the `Pneumonia_Detection_Preprocessing.ipynb` file and proceed with the image padding section which is the last part of this file execution.
 - Step - 2:
-  - Repeat Step-1 for the following files one after the other.
-    - `Pneumonia_Detection_Feature_Extraction.ipynb`
-    - `Pneumonia_Detection_Feature_Extraction_First_Order_GLCM_and_GLDM.ipynb`
-    - `Pneumonia_Detection_Feature_Extraction_GLRLM.ipynb`
-    - `Pneumonia_Detection_Feature_Extraction_NGTDM.ipynb`
-    - `First_Order_Features_Classification.ipynb`
-    - `Second_Order_GLCM_Features_Classification.ipynb`
-    - `Second_Order_GLRLM_Features_Classification.ipynb`
-    - `Second_Order_GLDM_Features_Classification.ipynb`
-    - `Second_Order_NGTDM_Features_Classification.ipynb`
+  - Repeat Step-1 for the following files one after the other (from point-1 to point-4. You can ignore the IMPORTANT NOTE from this step).
+    - `Pneumonia_Detection_Feature_Extraction.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Pneumonia_Detection_Feature_Extraction_First_Order_GLCM_and_GLDM.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Pneumonia_Detection_Feature_Extraction_GLRLM.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Pneumonia_Detection_Feature_Extraction_NGTDM.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `First_Order_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_GLCM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_GLRLM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_GLDM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_NGTDM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `All_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
 - You can look at the execution results within the file and interpret accordingly.
 
 # Authors

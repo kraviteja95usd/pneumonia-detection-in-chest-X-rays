@@ -58,18 +58,19 @@ We selected this dataset based on several factors. For more detailed information
 - Dataset has 2 folders:
   -  **Train:**
     -  Normal (without Pneumonia) = 1349 images
-    -  Pneumonia = 5233 images
+    -  Pneumonia = 3883 images
   -  **Test:**
-    -  Normal (without Pneumonia) = 5467 images
-    -  Pneumonia = 5857 images
+    -  Normal (without Pneumonia) = 234 images
+    -  Pneumonia = 390 images
 
 # Algorithms which can be used as part of our investigation
 - Deep Learning Algorithms
   - Convolutional Neural Networks (CNNs)
-  - Transfer Learning
 - Traditional Machine Learning Algorithms
   - Support Vector Machines (SVM)
   - Random Forests
+  - Logistic Regression
+  - Decision Tree etc
 - Optimization Techniques
   - Local Search, Search Strategies, and Heuristics
 
@@ -85,7 +86,23 @@ We selected this dataset based on several factors. For more detailed information
 - Following AI Ethics and Data Safety practices.
 
 # Project Requirements
-TBD
+- pillow
+- opencv-python
+- tensorflow
+- torch
+- torchvision
+- pandas
+- numpy
+- jupyter
+- notebook
+- tqdm
+- joblib
+- scipy
+- scikit-image
+- scikit-learn
+- pycaret
+- starlette
+- seaborn
 
 # Usage Instructions in Local System
 - Clone using HTTPS
@@ -106,7 +123,7 @@ OR -
 git clone gh repo clone kraviteja95usd/pneumonia-detection-in-chest-X-rays
 ```
  
-- Switch inside the Code Directory
+- Switch inside the Project Directory
 ```commandline
 cd pneumonia-detection-in-chest-X-rays
 ```
@@ -114,6 +131,11 @@ cd pneumonia-detection-in-chest-X-rays
 - Install Requirements
 ```commandline
 pip3 install -r requirements.txt
+```
+
+- Switch inside the Code Directory
+```commandline
+cd bin
 ```
 
 - Open your terminal (Command Prompt in Windows OR Terminal in MacBook)
@@ -125,18 +147,61 @@ OR -
 ```commandline
 jupyter lab
 ```
-- Click (Single click or double click whatever works) on the `Diabetes_Detector.ipynb` file.
-- You will notice the file opened.
-- Click `Run` button from the Menu bar and select the option of your interest (`Run Cell` or `Run All` button).
-- You can look at the execution results within the file.
+- Step-1:
+  - Click (Single click or double click whatever works) on the `Pneumonia_Detection_Preprocessing.ipynb` file.
+  - You will notice the file opened.
+  - Click `Run` button from the Menu bar and select the option of your interest (`Run Cell` or `Run All` button).
+  - You can look at the execution results within the file and interpret accordingly.
+    - !!! IMPORTANT NOTE AND DO NOT MISS THIS !!! 
+      Post execution of `Load the Excel file and fetch the maximum height and maximum width of all the images`
+      section from the `Pneumonia_Detection_Preprocessing.ipynb` file, goto the `dataset` path, copy the entire `chest_xray_nrm` 
+      folder and again paste it.
+      Now, rename the folder with `chest_xray_nrm_padded`. Then, go inside it. Append `_padded` to all the folders inside them.
+  - Now come back to the `Pneumonia_Detection_Preprocessing.ipynb` file and proceed with the image padding section which is the last part of this file execution.
+
+- Step-2:
+  - Repeat Step-1 for the following files one after the other (from point-1 to point-4. You can ignore the IMPORTANT NOTE from this step).
+    - `Pneumonia_Detection_Feature_Extraction.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Pneumonia_Detection_Feature_Extraction_First_Order_GLCM_and_GLDM.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Pneumonia_Detection_Feature_Extraction_GLRLM.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Pneumonia_Detection_Feature_Extraction_NGTDM.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `First_Order_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_GLCM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_GLRLM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_GLDM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_NGTDM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `All_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+  - You can look at the execution results within the file and interpret accordingly.
 
 # Usage Instructions in Google Colab
+- Upload your `chest_xray` dataset folder to your Google Drive with whatever the account you wish to open Google Colab.
 - Follow the same steps as above till switching to the `bin` directory.
 - Goto [Google Colab](https://colab.research.google.com).
 - You will find an option to `Upload Notebook`. 
-- Upload the notebook from your laptop to Google Colab.
-- Click on `Run` option and select `Run All` or `Run Cell` or any option of your interest. You will see the code running.
-- You can look at the execution results within the file.
+- Step - 1:
+  - Upload the notebooks `Pneumonia_Detection_Preprocessing.ipynb` and `Pneumonia_Detection_Feature_Extraction.ipynb` from your laptop to Google Colab.
+  - Goto `Pneumonia_Detection_Preprocessing.ipynb`. If required, write 3 to 4 lines of code to load the dataset from Google Colab as needed. You should be able to get it.
+  - Click on `Run` option and select `Run All` or `Run Cell` or any option of your interest. You will see the code running.
+  - You can look at the execution results within the file and interpret accordingly.
+    - !!! IMPORTANT NOTE AND DO NOT MISS THIS !!! 
+      Post execution of `Load the Excel file and fetch the maximum height and maximum width of all the images`
+      section from the `Pneumonia_Detection_Preprocessing.ipynb` file, goto the `dataset` path, copy the entire `chest_xray_nrm` 
+      folder and again paste it.
+      Now, rename the folder with `chest_xray_nrm_padded`. Then, go inside it. Append `_padded` to all the folders inside them.
+  - Now come back to the `Pneumonia_Detection_Preprocessing.ipynb` file and proceed with the image padding section which is the last part of this file execution.
+- Step - 2:
+  - Repeat Step-1 for the following files one after the other (from point-1 to point-4. You can ignore the IMPORTANT NOTE from this step).
+    - `Pneumonia_Detection_Feature_Extraction.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Pneumonia_Detection_Feature_Extraction_First_Order_GLCM_and_GLDM.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Pneumonia_Detection_Feature_Extraction_GLRLM.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Pneumonia_Detection_Feature_Extraction_NGTDM.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `First_Order_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_GLCM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_GLRLM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_GLDM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `Second_Order_NGTDM_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+    - `All_Features_Classification.ipynb`. Note that all the corresponding excel file will be generated in the `image_information` folder.
+- You can look at the execution results within the file and interpret accordingly.
 
 # Authors
 | Author                           | Contact Details                  |

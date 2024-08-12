@@ -28,6 +28,7 @@ This project focuses on detecting pneumonia from chest X-ray images using Advanc
 
 # Objectives of the Project
 **1. Image Analysis:** Develop and evaluate deep learning models to classify chest X-rays directly. This approach leverages deep learning models, particularly Convolutional Neural Networks (CNNs), to perform end-to-end image classification. The models directly process raw chest X-ray images to classify them as normal or pneumonia.
+
 **2. Feature Analysis:** Extract meaningful features from the images and use them to train and evaluate traditional machine learning models. In this approach, we first extract features from the chest X-ray images. These features are then used as inputs for traditional machine learning algorithms. The process includes steps such as feature extraction, selection, and transformation, followed by the application of machine learning techniques like Support Vector Machines (SVM), Random Forests.
 
 # Name of the Dataset
